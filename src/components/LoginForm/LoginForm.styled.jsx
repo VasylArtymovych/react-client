@@ -7,7 +7,7 @@ export const Form = styled.form`
   align-items: center;
   width: 50%;
   padding: ${(p) => p.theme.space[4]}px;
-  background: ${(p) => p.theme.colors.darkGreen};
+  background: ${(p) => p.theme.colors.background};
   color: ${(p) => p.theme.colors.white};
   border-radius: 10px;
 `;
@@ -34,7 +34,7 @@ export const Input = styled.input.attrs((props) => ({
 export const Button = styled.button.attrs({ type: "submit" })`
   width: 110px;
   height: 35px;
-  background: linear-gradient(to right, #0a4918, #53725a);
+  background: linear-gradient(to right, #4f68ca, #4e8f5d);
   color: ${(p) => p.theme.colors.white};
   border: ${(p) => p.theme.borders.bold};
   border-color: ${(p) => p.theme.colors.primary};

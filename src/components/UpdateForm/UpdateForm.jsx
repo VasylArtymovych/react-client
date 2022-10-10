@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Form, Label, Input, Button } from "./UpdateForm.styled";
 import { usersApi } from "redux/usersApi";
 
-function UpdateForm() {
+function UpdateForm({ socket }) {
   const [updateUser] = usersApi.useUpdateMutation();
   const userId = useSelector((state) => state.users.user._id);
 
@@ -16,7 +16,7 @@ function UpdateForm() {
         body[k] = v;
       }
     });
-
+    socket.emit("newEvent", { message: "Hello from usser page!" });
     updateUser({ userId, body });
     e.currentTarget.reset();
   };

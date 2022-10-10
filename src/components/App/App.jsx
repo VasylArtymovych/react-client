@@ -1,14 +1,26 @@
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import HomePage from "pages/HomePage";
 import LoginPage from "pages/LoginPage";
 import UserPage from "pages/UserPage";
 import Header from "components/Header";
 import PrivateRoute from "components/PrivateRoute";
 import PublicRoute from "components/PublicRoute";
+import socketIO from "socket.io-client";
+const socket = socketIO.connect("http://localhost:3030");
 
 function App() {
   const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
+
+  useEffect(() => {
+    socket.on("sendNotify", (notify) => {
+      toast.success(notify.msg);
+      console.log(notify);
+    });
+  }, []);
 
   return (
     <div>
@@ -43,12 +55,13 @@ function App() {
             path="/user"
             element={
               <PrivateRoute isLoggedIn={isLoggedIn} redirectPath="/login">
-                <UserPage />
+                <UserPage socket={socket} />
               </PrivateRoute>
             }
           />
         </Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

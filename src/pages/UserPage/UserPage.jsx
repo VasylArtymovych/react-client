@@ -1,11 +1,11 @@
 import { Container } from "components/Container";
 import UpdateForm from "components/UpdateForm";
 
-function UserPage() {
+function UserPage({ socket }) {
   return (
     <Container flexDirection="column">
       <h3>Update user details</h3>
-      <UpdateForm />
+      <UpdateForm socket={socket} />
     </Container>
   );
 }
