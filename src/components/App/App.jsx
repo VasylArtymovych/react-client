@@ -10,7 +10,7 @@ import Header from "components/Header";
 import PrivateRoute from "components/PrivateRoute";
 import PublicRoute from "components/PublicRoute";
 import socketIO from "socket.io-client";
-const socket = socketIO.connect("https://node-server-task.herokuapp.com");
+const socket = socketIO.connect("https://node-server-users.herokuapp.com");
 
 function App() {
   const { isLoggedIn, isRegistered } = useSelector((state) => state.users);
