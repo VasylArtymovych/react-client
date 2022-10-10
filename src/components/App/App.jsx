@@ -10,10 +10,10 @@ import Header from "components/Header";
 import PrivateRoute from "components/PrivateRoute";
 import PublicRoute from "components/PublicRoute";
 import socketIO from "socket.io-client";
-const socket = socketIO.connect("http://localhost:3030");
+const socket = socketIO.connect("https://node-server-task.herokuapp.com");
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
+  const { isLoggedIn, isRegistered } = useSelector((state) => state.users);
 
   useEffect(() => {
     socket.on("sendNotify", (notify) => {
@@ -32,6 +32,7 @@ function App() {
               <PublicRoute
                 redirectPath="/user"
                 isLoggedIn={isLoggedIn}
+                isRegistered={isRegistered}
                 restricted
               >
                 <HomePage />
